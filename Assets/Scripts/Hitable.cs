@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Gun : MonoBehaviour,IGun
+public class Hitable : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -12,9 +12,5 @@ public class Gun : MonoBehaviour,IGun
     void Update()
     {
         
-    }
-    public void ShootBullet()
-    {
-
     }
 }
