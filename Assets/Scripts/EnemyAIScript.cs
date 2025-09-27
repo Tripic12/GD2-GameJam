@@ -5,8 +5,7 @@ public class EnemyAIScript : MonoBehaviour
 {
     [SerializeField]
     private Camera _camera;
-    [SerializeField]
-    private NavMeshAgent _agent;
+    
     [SerializeField]
     private GameObject _player;
     private Rigidbody _rb;
@@ -14,7 +13,7 @@ public class EnemyAIScript : MonoBehaviour
     private float _movementSpeed = 2f;
 
     private Hitable _hitable;
-    private bool _isChasing = true;
+    public bool IsChasing = false;
     private float _chasingTime;
     private MeshRenderer _meshRenderer;
     private float _lerpNumber;
@@ -25,9 +24,7 @@ public class EnemyAIScript : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         _meshRenderer = GetComponent<MeshRenderer>();
 
-        _hitable.DrunknessAmount = 2;
-
-        _agent.updateRotation = false;
+        
     }
     private void FixedUpdate()
     {
@@ -37,11 +34,13 @@ public class EnemyAIScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_isChasing)
-        {
-            _chasingTime += Time.deltaTime;
+        _hitable.DrunknessTargetValue -= Time.deltaTime / 10;
 
-            _meshRenderer.material.color = Color.red;
+        if (_hitable.IsAngry) //IsChasing
+        {
+            //_chasingTime += Time.deltaTime;
+
+            _meshRenderer.material.color = Color.green;
 
             Vector3 dir = (_player.transform.position - transform.position).normalized;
             dir.y = 0; // only move on XZ plane
@@ -54,19 +53,19 @@ public class EnemyAIScript : MonoBehaviour
             }
 
             //Stop chasing after N-amount time
-            if (_chasingTime >= 3)
-            {
-                _isChasing = false;
-                _chasingTime = 0;
-            }
+            //if (_chasingTime >= 3)
+            //{
+            //    _hitable.IsAngry = false;
+            //    _chasingTime = 0;
+            //}
         }
-        if (!_isChasing)        
+        if (!_hitable.IsAngry)        
         {
 
             transform.position = transform.position;
         }
-        _lerpNumber += Time.deltaTime / _hitable.DrunknessAmount;
-        _meshRenderer.material.color = Color.Lerp(Color.red, Color.green, _lerpNumber);
+        _lerpNumber =  _hitable.DrunknessAmount/_hitable.MaxDrunkness;
+        _meshRenderer.material.color = Color.Lerp(Color.green, Color.red, _lerpNumber);
     }
 
 
@@ -78,7 +77,7 @@ public class EnemyAIScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            _isChasing = false;
+            _hitable.IsAngry = false;
         }
     }
 }

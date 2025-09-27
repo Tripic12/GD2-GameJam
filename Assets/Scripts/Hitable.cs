@@ -3,14 +3,14 @@ using UnityEngine;
 public class Hitable : MonoBehaviour
 {
     public float DrunknessAmount = 0f;
-    [SerializeField] private float _drunknessTargetValue = 0f;
-    [SerializeField] private float _maxDrunkness = 20f;
+    [SerializeField] public float DrunknessTargetValue = 0f;
+    [SerializeField] public float MaxDrunkness = 20f;
     [SerializeField] private float _getDrunkSpeed = 0.01f;
 
     [SerializeField] private float _waterFilledness = 0f;
     [SerializeField] private float _maxwaterFilledness = 20f;
 
-    [SerializeField] private float _angerAmountAndTime = 0f;
+    [SerializeField] public float AngerTime = 0f;
     
     public bool IsAngry;
 
@@ -27,22 +27,22 @@ public class Hitable : MonoBehaviour
     void Update()
     {
         //DrunkLogic
-        if (DrunknessAmount<_drunknessTargetValue)
+        if (DrunknessAmount<DrunknessTargetValue)
         {
             DrunknessAmount += _getDrunkSpeed;
         }
-        if (DrunknessAmount > _drunknessTargetValue)
+        if (DrunknessAmount > DrunknessTargetValue)
         {
             DrunknessAmount -= _getDrunkSpeed;
         }
-        if (DrunknessAmount > _maxDrunkness)
+        if (DrunknessAmount > MaxDrunkness)
         {
             //Gameover
             Debug.Log("Gameover: someone OD'd on vodka");
         }
-        if (_drunknessTargetValue < 0f)
+        if (DrunknessTargetValue < 0f)
         {
-            _drunknessTargetValue = 0f;
+            DrunknessTargetValue = 0f;
         }
 
 
@@ -56,16 +56,16 @@ public class Hitable : MonoBehaviour
 
 
         //AngerLogic
-        if (_angerAmountAndTime <= 0f)
+        if (AngerTime <= 0f)
         {
-            _angerAmountAndTime = 0f;
+            AngerTime = 0f;
         }
         if (IsAngry)
         {
-            _angerAmountAndTime -= Time.deltaTime;
-            if (_angerAmountAndTime <= 0f)
+            AngerTime -= Time.deltaTime;
+            if (AngerTime <= 0f)
             {
-                _angerAmountAndTime = 0f;
+                AngerTime = 0f;
                 IsAngry = false;
             }
         }
@@ -74,16 +74,16 @@ public class Hitable : MonoBehaviour
     {
         if (isWater)
         {
-            _drunknessTargetValue -= bulletDamage/2.5f;
-            _angerAmountAndTime +=bulletDamage;
+            DrunknessTargetValue -= bulletDamage/2.5f;
+            AngerTime +=bulletDamage;
             IsAngry = true;
             _waterFilledness += bulletDamage;
         }
         if (!isWater)
         {
-            _drunknessTargetValue+= bulletDamage;
+            DrunknessTargetValue+= bulletDamage;
             
-            _angerAmountAndTime-=bulletDamage/2f;
+            AngerTime-=bulletDamage/2f;
         }
     }
     public void HitByPuke()

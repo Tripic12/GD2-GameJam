@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 6216395914401224715}
   - component: {fileID: 7370669182893084949}
   - component: {fileID: 9070309448628480660}
-  - component: {fileID: 4159801572825837862}
   - component: {fileID: 5785535520883164016}
   - component: {fileID: 6402194270793551864}
-  m_Layer: 0
+  - component: {fileID: 6540787004378194956}
+  m_Layer: 8
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Drunky
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114,28 +114,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!195 &4159801572825837862
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6606692525066773522}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 1
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!114 &5785535520883164016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,8 +127,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 0}
-  _agent: {fileID: 4159801572825837862}
+  _agent: {fileID: 0}
   _player: {fileID: 0}
+  IsChasing: 0
 --- !u!54 &6402194270793551864
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -178,6 +157,28 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &6540787004378194956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6606692525066773522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e1d1227251e56b4ebd7975991733cc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DrunknessAmount: 0
+  DrunknessTargetValue: 0
+  MaxDrunkness: 20
+  _getDrunkSpeed: 0.01
+  _waterFilledness: 0
+  _maxwaterFilledness: 20
+  AngerTime: 0
+  IsAngry: 0
+  _puke: {fileID: 5203268631846926134, guid: a5e4cf47fcbbbf84a99a0669abe364e3, type: 3}
+  _pukeDistance: 0
 --- !u!1 &6897034990967998093
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,7 +191,7 @@ GameObject:
   - component: {fileID: 7805682083329956694}
   - component: {fileID: 5279936219285577993}
   - component: {fileID: 1534126253585985447}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
