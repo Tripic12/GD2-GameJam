@@ -11,7 +11,7 @@ public class DrunkRandomizer : MonoBehaviour
         foreach (GameObject drunky in _drunkies)
         {
             Hitable hitable = drunky.GetComponent<Hitable>();
-            int randomValue = Random.Range(0, 14);
+            int randomValue = Random.Range(3, 7);
             hitable.DrunknessAmount = randomValue;
             hitable.DrunknessTargetValue = randomValue;
         }

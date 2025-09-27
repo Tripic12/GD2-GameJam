@@ -5,7 +5,7 @@ public class Bullet : MonoBehaviour
     public bool IsWater = false;
     private float _bullletSpeed = 10f;
     [SerializeField] private Renderer _bulletRenderer;
-    private float _bulletDamageAmount = 10f;
+    private float _bulletDamageAmount = 11f;
 
     void Start()
     {

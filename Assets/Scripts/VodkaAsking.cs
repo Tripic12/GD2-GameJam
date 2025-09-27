@@ -1,8 +1,7 @@
-using System.Collections.Generic;
-using Unity.VisualScripting;
+
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.GraphicsBuffer;
+
 
 public class VodkaAsking : MonoBehaviour
 {
@@ -28,12 +27,13 @@ public class VodkaAsking : MonoBehaviour
     void Update()
     {
         
-        if (_hitableScript.DrunknessAmount<=3)
+        if (_hitableScript.DrunknessAmount<=5)
         {
             _vodkaImage.gameObject.SetActive( true);
+            _hitableScript.IsAngry = true;
                 
         }
-        if (_hitableScript.DrunknessAmount > 3)
+        if (_hitableScript.DrunknessAmount > 5)
         {
             _vodkaImage.gameObject.SetActive(false);
         }

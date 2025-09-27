@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.AI;
 
 public class EnemyAIScript : MonoBehaviour
 {
@@ -78,8 +77,13 @@ public class EnemyAIScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            if (_hitable.IsAngry)
+            {
+                Debug.Log("Game Over! You got beat up by drunkies.");
+            }
             _hitable.IsAngry = false;
-            Debug.Log("Game Over! You got beat up by drunkies.");
+            
+            
         }
     }
 }

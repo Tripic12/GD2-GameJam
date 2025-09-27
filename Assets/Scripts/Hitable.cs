@@ -69,6 +69,11 @@ public class Hitable : MonoBehaviour
 
 
         //AngerLogic
+        if (!IsAngry)
+        {
+            _signImage.gameObject.SetActive(false);
+        }
+        
         if (AngerTime <= 0f)
         {
             AngerTime = 0f;
@@ -77,7 +82,7 @@ public class Hitable : MonoBehaviour
         {
             _signImage.gameObject.SetActive(true);
 
-            float scale = Mathf.Sin(Time.time * 1.5f) * 1.5f;
+            float scale = Mathf.Sin(Time.time * 1.5f) ;
             scale = (scale + 1f) * 0.5f;
             _signImage.gameObject.transform.localScale = Vector3.one * (1f + scale);
 
@@ -88,12 +93,13 @@ public class Hitable : MonoBehaviour
                 IsAngry = false;
             }
         }
+        
     }
     public void GotHit(bool isWater,float bulletDamage)
     {
         if (isWater)
         {
-            DrunknessTargetValue -= bulletDamage/2f;
+            DrunknessTargetValue -= bulletDamage*0.7f;
             AngerTime +=bulletDamage;
             IsAngry = true;
             _waterFilledness += bulletDamage;
