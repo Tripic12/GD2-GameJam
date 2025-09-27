@@ -79,6 +79,7 @@ public class EnemyAIScript : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             _hitable.IsAngry = false;
+            Debug.Log("Game Over! You got beat up by drunkies.");
         }
     }
 }

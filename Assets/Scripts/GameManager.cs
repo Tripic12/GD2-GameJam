@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Text _multiplierUI;
     [SerializeField] private Text _incomeUI;
+    [SerializeField] private Text _incomeChangeUI;
+
     [SerializeField] private int _incomeTime=5;
     [SerializeField] private float _incomeTimer=0f;
     private float _multiplier=2f;
@@ -37,6 +39,7 @@ public class GameManager : MonoBehaviour
         }
         _funOMeter.maxValue = _maxFun;
         _income = 0;
+        _multiplierUI.enabled = false;
     }
 
     // Update is called once per frame
@@ -82,8 +85,19 @@ public class GameManager : MonoBehaviour
         {
             _income += _dummyIncomeValue*_multiplier;
             _incomeTimer = 0f;
+            if (_multiplier == -1)
+            {
+                _incomeUI.text = "$ " + ((int)_income).ToString();
+                _incomeChangeUI.text =  ((int)(_dummyIncomeValue * _multiplier)).ToString();
+            }
+            if (_multiplier == 1)
+            {
+                _incomeUI.text = "$ " + ((int)_income).ToString();
+                _incomeChangeUI.text = "+" + ((int)(_dummyIncomeValue * _multiplier)).ToString();
+            }
+
         }
         
-        _incomeUI.text="$$"+((int)_income).ToString();
+        
     }
 }
