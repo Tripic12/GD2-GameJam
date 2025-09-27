@@ -6,8 +6,8 @@ using static UnityEngine.GraphicsBuffer;
 
 public class VodkaAsking : MonoBehaviour
 {
-    [SerializeField]
-    private List<GameObject> _drunkies = new List<GameObject>();
+    
+    
     private float _assignTimer;
     private bool _isAssigned;
     [SerializeField]
@@ -17,20 +17,25 @@ public class VodkaAsking : MonoBehaviour
 
     private GameObject _obj;
     private int _index;
+    private Hitable _hitableScript;
 
     void Start()
     {
+        _hitableScript=gameObject.GetComponent<Hitable>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        _assignTimer += Time.deltaTime;
-
-        if (_assignTimer >= 3)
+        
+        if (_hitableScript.DrunknessAmount<=3)
         {
             _vodkaImage.gameObject.SetActive( true);
-                _assignTimer = 0;
+                
+        }
+        if (_hitableScript.DrunknessAmount > 3)
+        {
+            _vodkaImage.gameObject.SetActive(false);
         }
     }
 }

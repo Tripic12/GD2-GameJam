@@ -84,6 +84,6 @@ public class GameManager : MonoBehaviour
             _incomeTimer = 0f;
         }
         
-        _incomeUI.text=((int)_income).ToString();
+        _incomeUI.text="$$"+((int)_income).ToString();
     }
 }
