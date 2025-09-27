@@ -588,6 +588,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1292389820334607472, guid: b2031b0a9c5959b4db88e550d1a5462e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2051133465742782166, guid: b2031b0a9c5959b4db88e550d1a5462e, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -1688,6 +1692,7 @@ MonoBehaviour:
   _puke: {fileID: 0}
   _pukeDistance: 0
   _gameManagerScript: {fileID: 0}
+  _signImage: {fileID: 0}
 --- !u!1 &2057483295
 GameObject:
   m_ObjectHideFlags: 0
