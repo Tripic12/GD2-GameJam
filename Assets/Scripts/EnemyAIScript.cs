@@ -34,7 +34,11 @@ public class EnemyAIScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _hitable.DrunknessTargetValue -= Time.deltaTime / 10;
+        if(_hitable.DrunknessTargetValue!=0)
+        {
+            _hitable.DrunknessTargetValue -= Time.deltaTime / 5;
+        }
+        
 
         if (_hitable.IsAngry) //IsChasing
         {
@@ -44,12 +48,12 @@ public class EnemyAIScript : MonoBehaviour
 
             Vector3 dir = (_player.transform.position - transform.position).normalized;
             dir.y = 0; // only move on XZ plane
-            _rb.MovePosition(transform.position + dir * _movementSpeed * Time.fixedDeltaTime);
+            _rb.MovePosition(transform.position + dir * _movementSpeed * Time.deltaTime);
             // Rotate smoothly
             if (dir.sqrMagnitude > 0.01f)
             {
                 Quaternion targetRot = Quaternion.LookRotation(dir);
-                _rb.MoveRotation(Quaternion.Slerp(_rb.rotation, targetRot, _rotationSpeed * Time.fixedDeltaTime));
+                _rb.MoveRotation(Quaternion.Slerp(_rb.rotation, targetRot, _rotationSpeed * Time.deltaTime));
             }
 
             //Stop chasing after N-amount time

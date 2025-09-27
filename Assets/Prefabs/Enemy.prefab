@@ -127,7 +127,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 0}
-  _agent: {fileID: 0}
   _player: {fileID: 0}
   IsChasing: 0
 --- !u!54 &6402194270793551864
@@ -172,13 +171,14 @@ MonoBehaviour:
   DrunknessAmount: 0
   DrunknessTargetValue: 0
   MaxDrunkness: 20
-  _getDrunkSpeed: 0.01
+  _getDrunkSpeed: 0.03
   _waterFilledness: 0
   _maxwaterFilledness: 20
   AngerTime: 0
   IsAngry: 0
   _puke: {fileID: 5203268631846926134, guid: a5e4cf47fcbbbf84a99a0669abe364e3, type: 3}
   _pukeDistance: 0
+  _gameManagerScript: {fileID: 0}
 --- !u!1 &6897034990967998093
 GameObject:
   m_ObjectHideFlags: 0
