@@ -12,9 +12,10 @@ public class Hitable : MonoBehaviour
 
     [SerializeField] private float _angerAmountAndTime = 0f;
     
-
     public bool IsAngry;
 
+    [SerializeField] private GameObject _puke;
+    [SerializeField] private int _pukeDistance;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -49,6 +50,8 @@ public class Hitable : MonoBehaviour
         if ((_waterFilledness > _maxwaterFilledness)&&(DrunknessAmount>0f))
         {
             //customer will puke
+            Instantiate(_puke, transform.position +transform.forward* _pukeDistance, Quaternion.identity);
+            _waterFilledness = 0;
         }
 
 
@@ -82,5 +85,9 @@ public class Hitable : MonoBehaviour
             
             _angerAmountAndTime-=bulletDamage/2f;
         }
+    }
+    public void HitByPuke()
+    {
+        IsAngry = true;
     }
 }

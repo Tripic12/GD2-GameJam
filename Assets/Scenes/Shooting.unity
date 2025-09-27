@@ -1084,7 +1084,7 @@ GameObject:
   - component: {fileID: 1976553004}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Drunky
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1198,6 +1198,8 @@ MonoBehaviour:
   _maxwaterFilledness: 20
   _angerAmountAndTime: 0
   IsAngry: 0
+  _puke: {fileID: 5203268631846926134, guid: a5e4cf47fcbbbf84a99a0669abe364e3, type: 3}
+  _pukeDistance: 2
 --- !u!1001 &1999549808
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1473,6 +1475,14 @@ PrefabInstance:
     - target: {fileID: 441665957724186028, guid: ec537f960f4aafe49b60fc717ddbd300, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416231304826103351, guid: ec537f960f4aafe49b60fc717ddbd300, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416231304826103351, guid: ec537f960f4aafe49b60fc717ddbd300, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2471015087258070937, guid: ec537f960f4aafe49b60fc717ddbd300, type: 3}
       propertyPath: m_Name
