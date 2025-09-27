@@ -67,7 +67,7 @@ public class ColorChanging : MonoBehaviour
             //Game over if OD is too much
             if (_timerOD >= 10 || _hitable.DrunknessAmount >= 25)
             {
-                Debug.Log("Game Over!");
+                Debug.Log("Game Over! someone OD'd on vodka");
             }
         }
     }
