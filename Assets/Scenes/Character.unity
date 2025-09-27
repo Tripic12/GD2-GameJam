@@ -591,7 +591,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &904568855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -678,6 +678,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1182697570 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6606692525066773522, guid: b2031b0a9c5959b4db88e550d1a5462e, type: 3}
+  m_PrefabInstance: {fileID: 4890365647024881536}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1364280095
 GameObject:
   m_ObjectHideFlags: 0
@@ -689,7 +694,7 @@ GameObject:
   - component: {fileID: 1364280097}
   - component: {fileID: 1364280096}
   m_Layer: 0
-  m_Name: ImageController
+  m_Name: VodkaAssigner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -707,7 +712,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f854fb14c2ff8b2448cdb8bc93122f68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _vodkaImage: {fileID: 0}
+  _drunkies:
+  - {fileID: 1182697570}
+  _vodkaImage: {fileID: 2018272209}
+  _canvas: {fileID: 0}
 --- !u!4 &1364280097
 Transform:
   m_ObjectHideFlags: 0
@@ -1445,6 +1453,17 @@ MonoBehaviour:
   _puke: {fileID: 0}
   _pukeDistance: 0
   _gameManagerScript: {fileID: 0}
+--- !u!114 &2018272209 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8962464900683192620, guid: b2031b0a9c5959b4db88e550d1a5462e, type: 3}
+  m_PrefabInstance: {fileID: 4890365647024881536}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2057483295
 GameObject:
   m_ObjectHideFlags: 0
@@ -1636,6 +1655,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1051003865312430800, guid: b2031b0a9c5959b4db88e550d1a5462e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2051133465742782166, guid: b2031b0a9c5959b4db88e550d1a5462e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4266333352223746957, guid: b2031b0a9c5959b4db88e550d1a5462e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1687,10 +1714,6 @@ PrefabInstance:
     - target: {fileID: 6606692525066773522, guid: b2031b0a9c5959b4db88e550d1a5462e, type: 3}
       propertyPath: m_Name
       value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 6606692525066773522, guid: b2031b0a9c5959b4db88e550d1a5462e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
