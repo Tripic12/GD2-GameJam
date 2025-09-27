@@ -1,3 +1,4 @@
+using NUnit.Framework.Constraints;
 using TMPro;
 using UnityEngine;
 
@@ -20,11 +21,11 @@ public class ColorChanging : MonoBehaviour
 
     //Status materials
     [SerializeField]
-    private Material _sober;
+    private Color _sober=Color.white;
     [SerializeField]
-    private Material _drunk;
+    private Color _drunk=Color.green;
     [SerializeField]
-    private Material _od;
+    private Color _od=Color.red;
 
 
 
@@ -32,7 +33,7 @@ public class ColorChanging : MonoBehaviour
     void Start()
     {
         _meshRenderer = GetComponent<MeshRenderer>();
-
+        _hitable = GetComponent<Hitable>();
         _characterColor = _meshRenderer.material.color;
     }
 
@@ -42,13 +43,12 @@ public class ColorChanging : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             _lerpTimer += Time.deltaTime / _duration;
-            _meshRenderer.material.color = Color.Lerp(_sober.color, _drunk.color, _lerpTimer);
+            _meshRenderer.material.color = Color.Lerp(_sober, _drunk, _lerpTimer);
         }
 
         if(_hitable.DrunknessAmount >= 20)
         {
             _isOD = true;
-            _timerOD = 0;
         }
         if (_isOD)
         {
@@ -56,11 +56,11 @@ public class ColorChanging : MonoBehaviour
             _timerOD += Time.deltaTime;
             if (Mathf.FloorToInt(_timerOD / _frequencyOD) % 2 == 0)
             {
-                _meshRenderer.material.color = _sober.color;
+                _meshRenderer.material.color = _sober;
             }
             else
             {
-                _meshRenderer.material.color = _od.color;
+                _meshRenderer.material.color = _od;
             }
             //Game over if OD is too much
             if(_timerOD >= 10 || _hitable.DrunknessAmount >= 25)

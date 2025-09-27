@@ -44,7 +44,7 @@ public class EnemyAIScript : MonoBehaviour
         {
             //_chasingTime += Time.deltaTime;
 
-            _meshRenderer.material.color = Color.green;
+            //_meshRenderer.material.color = Color.green;
 
             Vector3 dir = (_player.transform.position - transform.position).normalized;
             dir.y = 0; // only move on XZ plane
@@ -68,15 +68,12 @@ public class EnemyAIScript : MonoBehaviour
 
             transform.position = transform.position;
         }
-        _lerpNumber =  _hitable.DrunknessAmount/_hitable.MaxDrunkness;
-        _meshRenderer.material.color = Color.Lerp(Color.green, Color.red, _lerpNumber);
+        //_lerpNumber =  _hitable.DrunknessAmount/_hitable.MaxDrunkness;
+        //_meshRenderer.material.color = Color.Lerp(Color.green, Color.red, _lerpNumber);
     }
 
 
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-
-    }
+  
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Player")
