@@ -1,14 +1,19 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
 
 public class VodkaAsking : MonoBehaviour
 {
+    [SerializeField]
     private List<GameObject> _drunkies = new List<GameObject>();
     private int _assignTimer;
     private bool _isAssigned;
-    private Sprite _vodkaImage;
+    [SerializeField]
+    private Image _vodkaImage;
+    [SerializeField]
+    private Canvas _canvas;
 
     private GameObject _obj;
     private int _index;
@@ -22,31 +27,16 @@ public class VodkaAsking : MonoBehaviour
     {
         _assignTimer++;
 
-        if (_assignTimer >= 5)
+        if (_assignTimer >= 2)
         {
-            if (_drunkies.Count == 0) return;
-
-            // Pick a random index
-            int randomIndex = Random.Range(0, _drunkies.Count);
-
-            // Get the chosen GameObject
-            GameObject chosenObject = _drunkies[randomIndex];
-
-            // Convert world position to screen position
-            Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
-
-            // Apply position to the UI image (anchored in screen space)
-            _vodkaImage.rectTransform.position = screenPos;
-        }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            _index++;
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-            _obj = GameObject.Find($"VodkaImage{_index}");
-            _obj.SetActive(false);
+            //if (_drunkies.Count == 0) return;
+            //int randomIndex = Random.Range(0, _drunkies.Count);
+            //GameObject chosenObject = _drunkies[randomIndex];
+            //Canvas canvas = chosenObject.GetComponent<Canvas>();
+            //canvas.enabled = true;
+            _vodkaImage.enabled = true;
+            _canvas.enabled = true;
+                _assignTimer = 0;
         }
     }
 }
