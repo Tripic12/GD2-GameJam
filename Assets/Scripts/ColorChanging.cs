@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class ColorChanging : MonoBehaviour
@@ -9,6 +10,8 @@ public class ColorChanging : MonoBehaviour
 
     private MeshRenderer _meshRenderer;
     private Color _characterColor;
+
+    private Hitable _hitable;
     //Statuses
     private bool _isSober;
     private bool _isTipsy;
@@ -42,12 +45,14 @@ public class ColorChanging : MonoBehaviour
             _meshRenderer.material.color = Color.Lerp(_sober.color, _drunk.color, _lerpTimer);
         }
 
-        if ((Input.GetMouseButtonDown(1)))
+        if(_hitable.DrunknessAmount >= 20)
         {
             _isOD = true;
+            _timerOD = 0;
         }
         if (_isOD)
         {
+            // OD change flickering
             _timerOD += Time.deltaTime;
             if (Mathf.FloorToInt(_timerOD / _frequencyOD) % 2 == 0)
             {
@@ -57,7 +62,8 @@ public class ColorChanging : MonoBehaviour
             {
                 _meshRenderer.material.color = _od.color;
             }
-            if(_timerOD >= 10)
+            //Game over if OD is too much
+            if(_timerOD >= 10 || _hitable.DrunknessAmount >= 25)
             {
                 Debug.Log("Game Over!");
             }
