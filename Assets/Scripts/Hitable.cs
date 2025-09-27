@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Hitable : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class Hitable : MonoBehaviour
     [SerializeField] private int _pukeDistance;
 
     [SerializeField] private GameManager _gameManagerScript;
+
+    [SerializeField] private Image _signImage;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -72,6 +75,12 @@ public class Hitable : MonoBehaviour
         }
         if (IsAngry)
         {
+            _signImage.gameObject.SetActive(true);
+
+            float scale = Mathf.Sin(Time.time * 1.5f) * 1.5f;
+            scale = (scale + 1f) * 0.5f;
+            _signImage.gameObject.transform.localScale = Vector3.one * (1f + scale);
+
             AngerTime -= Time.deltaTime;
             if (AngerTime <= 0f)
             {
