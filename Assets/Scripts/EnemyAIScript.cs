@@ -9,13 +9,27 @@ public class EnemyAIScript : MonoBehaviour
     private NavMeshAgent _agent;
     [SerializeField]
     private GameObject _player;
+    private Rigidbody _rb;
+    private float _rotationSpeed = 10f;
+    private float _movementSpeed = 2f;
 
-    private bool _isHit = false;
-    private float _lerpTime = 2f;
-    private float t;
-    private float f;
+    private Hitable _hitable;
+    private bool _isChasing = true;
+    private float _chasingTime;
+    private MeshRenderer _meshRenderer;
+    private float _lerpNumber;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
+    {
+        _hitable = GetComponent<Hitable>();
+        _rb = GetComponent<Rigidbody>();
+        _meshRenderer = GetComponent<MeshRenderer>();
+
+        _hitable.DrunknessAmount = 2;
+
+        _agent.updateRotation = false;
+    }
+    private void FixedUpdate()
     {
 
     }
@@ -23,37 +37,54 @@ public class EnemyAIScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Transform _playerTransform = _player.transform;
-        MeshRenderer _agentMesh = _agent.GetComponent<MeshRenderer>();
-
-        if (Input.GetMouseButton(0))
+        if (_isChasing)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hitInfo))
+            _chasingTime += Time.deltaTime;
+
+            _meshRenderer.material.color = Color.red;
+
+            Vector3 dir = (_player.transform.position - transform.position).normalized;
+            dir.y = 0; // only move on XZ plane
+            _rb.MovePosition(transform.position + dir * _movementSpeed * Time.fixedDeltaTime);
+            // Rotate smoothly
+            if (dir.sqrMagnitude > 0.01f)
             {
-
-                _agent.SetDestination(_playerTransform.position);
+                Quaternion targetRot = Quaternion.LookRotation(dir);
+                _rb.MoveRotation(Quaternion.Slerp(_rb.rotation, targetRot, _rotationSpeed * Time.fixedDeltaTime));
             }
-            if (_agent.transform.position == _playerTransform.position)
+
+            //Stop chasing after N-amount time
+            if (_chasingTime >= 3)
             {
-                _agent.transform.position = _agent.transform.position;
+                _isChasing = false;
+                _chasingTime = 0;
             }
-
         }
+        if (!_isChasing)        
+        {
 
-        if (_isHit)
-        {
-            t += Time.deltaTime / _lerpTime;
-            _agentMesh.material.color = Color.Lerp(Color.green, Color.red, t);
-        }     
-        if (!_isHit)
-        {
-            _agentMesh.material.color = Color.green;
+            transform.position = transform.position;
         }
+        _lerpNumber += Time.deltaTime / _hitable.DrunknessAmount;
+        _meshRenderer.material.color = Color.Lerp(Color.red, Color.green, _lerpNumber);
+    }
 
-        if (Input.GetMouseButton(1))
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
         {
-            _isHit = true;
+            _isChasing = false;
         }
     }
 }
+
+/*            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit hitInfo))
+            {
+                _agent.SetDestination(_playerTransform.position);
+            }*/

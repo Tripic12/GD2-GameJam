@@ -12,7 +12,5 @@ public class CameraScript : MonoBehaviour
     void Update()
     {
         _mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        
     }
 }
