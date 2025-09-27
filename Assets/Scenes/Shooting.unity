@@ -279,6 +279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _funOMeter: {fileID: 1700225878}
+  _funOMeterColor: {fileID: 1704680122}
   _maxFun: 0
   _currentFun: 0
   _previousFun: 0

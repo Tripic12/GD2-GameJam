@@ -84,7 +84,7 @@ public class Hitable : MonoBehaviour
     {
         if (isWater)
         {
-            DrunknessTargetValue -= bulletDamage/2.5f;
+            DrunknessTargetValue -= bulletDamage/2f;
             AngerTime +=bulletDamage;
             IsAngry = true;
             _waterFilledness += bulletDamage;

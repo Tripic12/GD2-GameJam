@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private Slider _funOMeter;
+    [SerializeField] private Image _funOMeterColor;
     [SerializeField] private float _maxFun;
     [SerializeField] private float _currentFun;
     [SerializeField] private float _previousFun;
@@ -50,37 +51,39 @@ public class GameManager : MonoBehaviour
         _funOMeter.minValue = 0f;
         if (_previousFun != _currentFun)
         {
-            //if (_currentFun > (_maxFun * 0.7))
-            //{
-            //    _income += _dummyIncomeValue;
-
-            //    //activate ui element  x2
-            //    _multiplierUI.enabled = true;
-            //}
             
             _funOMeter.value = _currentFun;
             _dummyIncomeValue = _currentFun;
         }
+        
         if (_dummyIncomeValue > (_maxFun * 0.7))
         {
             //activate ui element  x2
             _multiplier = 2f;
             _multiplierUI.enabled = true;
+            _funOMeterColor.color = Color.yellow;
         }
-        if (_dummyIncomeValue < (_maxFun * 0.7))
+        if (_dummyIncomeValue < (_maxFun * 0.7)&&_dummyIncomeValue>(_maxFun*0.2))
         {
             _multiplier = 1f;
             _multiplierUI.enabled = false;
+            _funOMeterColor.color = Color.green;
         }
         _currentFun = 0;
 
         _incomeTimer += Time.deltaTime;
+
+        if (_dummyIncomeValue < (_maxFun * 0.2))
+        {
+            _multiplier = -1;
+            _funOMeterColor.color = Color.red;
+        }
         if (_incomeTimer > _incomeTime)
         {
             _income += _dummyIncomeValue*_multiplier;
             _incomeTimer = 0f;
         }
         
-        _incomeUI.text=_income.ToString();
+        _incomeUI.text=((int)_income).ToString();
     }
 }
