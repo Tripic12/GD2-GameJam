@@ -8,7 +8,7 @@ public class VodkaAsking : MonoBehaviour
 {
     [SerializeField]
     private List<GameObject> _drunkies = new List<GameObject>();
-    private int _assignTimer;
+    private float _assignTimer;
     private bool _isAssigned;
     [SerializeField]
     private Image _vodkaImage;
@@ -25,17 +25,11 @@ public class VodkaAsking : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _assignTimer++;
+        _assignTimer += Time.deltaTime;
 
-        if (_assignTimer >= 2)
+        if (_assignTimer >= 3)
         {
-            //if (_drunkies.Count == 0) return;
-            //int randomIndex = Random.Range(0, _drunkies.Count);
-            //GameObject chosenObject = _drunkies[randomIndex];
-            //Canvas canvas = chosenObject.GetComponent<Canvas>();
-            //canvas.enabled = true;
-            _vodkaImage.enabled = true;
-            _canvas.enabled = true;
+            _vodkaImage.gameObject.SetActive( true);
                 _assignTimer = 0;
         }
     }
