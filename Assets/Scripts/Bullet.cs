@@ -27,12 +27,25 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         GameObject hitTarget = other.gameObject;
-        Hitable hitScriptTarget=hitTarget.GetComponent<Hitable>();
-        hitScriptTarget.GotHit(IsWater,_bulletDamageAmount);
-        Destroy(this.gameObject);
-        if( hitScriptTarget == null)
+        
+        
+        if (hitTarget.tag == "Drunky")
         {
+            Hitable hitScriptTarget = hitTarget.GetComponent<Hitable>();
+            hitScriptTarget.GotHit(IsWater, _bulletDamageAmount);
             Destroy(this.gameObject);
+        }
+        
+
+        if (hitTarget.tag=="Puke"&&IsWater) 
+        {
+            hitTarget.GetComponent<Puke>().GetCleaned(_bulletDamageAmount);
+            Destroy(gameObject);
+        }
+        
+        if( hitTarget.tag=="Untagged")
+        {
+            Destroy(this.gameObject,0.1f);
         }
 
     }

@@ -12,9 +12,10 @@ public class Hitable : MonoBehaviour
 
     [SerializeField] private float _angerAmountAndTime = 0f;
     
-
     public bool IsAngry;
 
+    [SerializeField] private GameObject _puke;
+    [SerializeField] private int _pukeDistance;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -25,6 +26,7 @@ public class Hitable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //DrunkLogic
         if (DrunknessAmount<_drunknessTargetValue)
         {
             DrunknessAmount += _getDrunkSpeed;
@@ -33,10 +35,34 @@ public class Hitable : MonoBehaviour
         {
             DrunknessAmount -= _getDrunkSpeed;
         }
+        if (DrunknessAmount > _maxDrunkness)
+        {
+            //Gameover
+            Debug.Log("Gameover: someone OD'd on vodka");
+        }
+        if (_drunknessTargetValue < 0f)
+        {
+            _drunknessTargetValue = 0f;
+        }
 
 
+        //waterLogic
+        if ((_waterFilledness > _maxwaterFilledness)&&(DrunknessAmount>0f))
+        {
+            //customer will puke
+            Instantiate(_puke, transform.position +transform.forward* _pukeDistance, Quaternion.identity);
+            _waterFilledness = 0;
+        }
+
+
+        //AngerLogic
+        if (_angerAmountAndTime <= 0f)
+        {
+            _angerAmountAndTime = 0f;
+        }
         if (IsAngry)
         {
+            _angerAmountAndTime -= Time.deltaTime;
             if (_angerAmountAndTime <= 0f)
             {
                 _angerAmountAndTime = 0f;
@@ -48,7 +74,7 @@ public class Hitable : MonoBehaviour
     {
         if (isWater)
         {
-            _drunknessTargetValue -= bulletDamage;
+            _drunknessTargetValue -= bulletDamage/2.5f;
             _angerAmountAndTime +=bulletDamage;
             IsAngry = true;
             _waterFilledness += bulletDamage;
@@ -59,5 +85,9 @@ public class Hitable : MonoBehaviour
             
             _angerAmountAndTime-=bulletDamage/2f;
         }
+    }
+    public void HitByPuke()
+    {
+        IsAngry = true;
     }
 }

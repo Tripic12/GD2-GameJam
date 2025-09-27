@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Puke
+  - Drunky
   layers:
   - Default
   - TransparentFX
@@ -14,8 +16,8 @@ TagManager:
   - Gun
   - Bullet
   - Drunky
-  - 
-  - 
+  - Environment
+  - Puke
   - 
   - 
   - 
