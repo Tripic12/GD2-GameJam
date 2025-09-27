@@ -22,7 +22,6 @@ public class VodkaAsking : MonoBehaviour
 
         if (_assignTimer >= 5)
         {
-            _drunkies[Random.Range(0, 4)] = ;
         }
 
         if (Input.GetMouseButtonDown(0))
