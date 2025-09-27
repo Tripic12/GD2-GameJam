@@ -155,6 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 1607993182}
   _agent: {fileID: 24635226}
+  _player: {fileID: 1830049942}
 --- !u!195 &24635226
 NavMeshAgent:
   m_ObjectHideFlags: 0
