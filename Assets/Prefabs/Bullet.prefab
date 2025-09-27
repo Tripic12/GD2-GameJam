@@ -126,7 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsWater: 0
   _bullletSpeed: 2
-  _bulletMaterial: {fileID: 2100000, guid: cd9866406dcc22747a355c5c617c6650, type: 2}
+  _bulletMaterial: {fileID: 0}
 --- !u!54 &1267470586138224290
 Rigidbody:
   m_ObjectHideFlags: 0

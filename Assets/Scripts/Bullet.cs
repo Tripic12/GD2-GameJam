@@ -4,12 +4,12 @@ public class Bullet : MonoBehaviour
 {
     public bool IsWater = false;
     [SerializeField] private float _bullletSpeed = 20f;
-    [SerializeField] private Material _bulletMaterial;
-    
+    [SerializeField] private Renderer _bulletRenderer;
+    [SerializeField] private float _bulletDamageAmount = 5f;
 
     void Start()
     {
-        
+        _bulletRenderer = gameObject.GetComponent<Renderer>();
     }
     void Update()
     {
@@ -17,17 +17,19 @@ public class Bullet : MonoBehaviour
         transform.position += transform.up.normalized*_bullletSpeed * Time.deltaTime;
         if (IsWater)
         {
-            _bulletMaterial.color = Color.blue;
+            _bulletRenderer.material.color = Color.blue;
         }
         if(!IsWater)
         {
-            _bulletMaterial.color = Color.white;
+            _bulletRenderer.material.color = Color.white;
         }
     }
     private void OnTriggerEnter(Collider other)
     {
         GameObject hitTarget = other.gameObject;
         Hitable hitScriptTarget=hitTarget.GetComponent<Hitable>();
+        hitScriptTarget.GotHit(IsWater,_bulletDamageAmount);
+        Destroy(this.gameObject);
         if( hitScriptTarget == null)
         {
             Destroy(this.gameObject);
