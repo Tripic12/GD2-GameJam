@@ -12,7 +12,9 @@ GameObject:
   - component: {fileID: 4886290951511171452}
   - component: {fileID: 6687414649213670145}
   - component: {fileID: 1680665054874658017}
+  - component: {fileID: 9204313583615907193}
   - component: {fileID: 1496915825842081054}
+  - component: {fileID: 1416231304826103351}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -113,6 +115,20 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &9204313583615907193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2471015087258070937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 907cfa307c0d35d48869a38aceb9781f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 500
+  _rotationSpeed: 10
 --- !u!114 &1496915825842081054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,6 +144,33 @@ MonoBehaviour:
   _vodkaSpawnPoint: {fileID: 4607778205978722002}
   _waterSpawnPoint: {fileID: 1691785182104752919}
   _bulletPrefab: {fileID: 4624647617603689131, guid: edf2b5f2e6782554ba19aa4a1fe8519f, type: 3}
+--- !u!54 &1416231304826103351
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2471015087258070937}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &561688108171458607
 PrefabInstance:
   m_ObjectHideFlags: 0
