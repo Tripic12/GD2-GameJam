@@ -4,7 +4,8 @@ public class ColorChanging : MonoBehaviour
 {
     private float _lerpTimer;
     private float _duration = 5;
-    private int _timerOD;
+    private float _timerOD;
+    private float _frequencyOD = 0.15f;
 
     private MeshRenderer _meshRenderer;
     private Color _characterColor;
@@ -35,26 +36,30 @@ public class ColorChanging : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-/*        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0))
         {
             _lerpTimer += Time.deltaTime / _duration;
+            _meshRenderer.material.color = Color.Lerp(_sober.color, _drunk.color, _lerpTimer);
         }
-        _characterColor = Color.Lerp(_sober.color, _drunk.color, _lerpTimer);*/
 
         if ((Input.GetMouseButtonDown(1)))
         {
-            _isOD= true;
+            _isOD = true;
         }
         if (_isOD)
         {
-            _timerOD += 1;
-            if(_timerOD % 2 == 0)
+            _timerOD += Time.deltaTime;
+            if (Mathf.FloorToInt(_timerOD / _frequencyOD) % 2 == 0)
             {
                 _meshRenderer.material.color = _sober.color;
-            } 
+            }
             else
             {
                 _meshRenderer.material.color = _od.color;
+            }
+            if(_timerOD >= 10)
+            {
+                Debug.Log("Game Over!");
             }
         }
     }
