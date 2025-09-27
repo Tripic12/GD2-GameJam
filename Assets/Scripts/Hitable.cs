@@ -17,10 +17,14 @@ public class Hitable : MonoBehaviour
     [SerializeField] private GameObject _puke;
     [SerializeField] private int _pukeDistance;
 
+    [SerializeField] private GameManager _gameManagerScript;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        GameObject gameManager= GameObject.Find("GameManager");
+        _gameManagerScript=gameManager.GetComponent<GameManager>();
+        _gameManagerScript.Enemies.Add(this);
     }
 
     // Update is called once per frame
@@ -47,11 +51,17 @@ public class Hitable : MonoBehaviour
 
 
         //waterLogic
+        _waterFilledness -= Time.deltaTime / 10f;
+
         if ((_waterFilledness > _maxwaterFilledness)&&(DrunknessAmount>0f))
         {
             //customer will puke
             Instantiate(_puke, transform.position +transform.forward* _pukeDistance, Quaternion.identity);
             _waterFilledness = 0;
+        }
+        if (_waterFilledness <= 0f)
+        {
+            _waterFilledness = 0f;
         }
 
 

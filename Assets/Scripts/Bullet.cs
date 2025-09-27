@@ -3,9 +3,9 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public bool IsWater = false;
-    [SerializeField] private float _bullletSpeed = 20f;
+    private float _bullletSpeed = 10f;
     [SerializeField] private Renderer _bulletRenderer;
-    [SerializeField] private float _bulletDamageAmount = 5f;
+    private float _bulletDamageAmount = 10f;
 
     void Start()
     {
